@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/wbalaniucCentennialCollege/COMP397-F2019/issues"
   },
-  "homepage": "https://github.com/wbalaniucCentennialCollege/COMP397-F2019#readme"
+  "homepage": "https://github.com/wbalaniucCentennialCollege/COMP397-F2019#readme",
+  "devDependencies": {
+    "@types/easeljs": "^1.0.0",
+    "@types/preloadjs": "^0.6.32",
+    "@types/soundjs": "^0.6.27",
+    "@types/tweenjs": "^1.0.0"
+  }
 }
