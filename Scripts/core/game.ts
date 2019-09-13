@@ -8,9 +8,21 @@
     let helloLabel:objects.Label; 
     let clickableButton:objects.Button;
 
+    let assetManager:createjs.LoadQueue;
+    let assetManifest: any[];
+
+    assetManifest = [
+        {id: "clickMeButton", src:"./Assets/ClickMeButton.png"}
+    ];
+
     function Init() {
         console.log("Initialization Start");
-        Start();
+        // Start();
+
+        assetManager = new createjs.LoadQueue();
+        assetManager.installPlugin(createjs.Sound);
+        assetManager.loadManifest(assetManifest);
+        assetManager.on("complete", Start, this);
     }
 
     function Start() {
@@ -43,7 +55,7 @@
         stage.addChild(helloLabel); // Add the label to the stage
 
         // Button Initialization
-        clickableButton = new objects.Button("./Assets/ClickMeButton.png", 320, 340);
+        clickableButton = new objects.Button(assetManager, "clickMeButton", 320, 340);
 
         clickableButton.regX = 95;
         clickableButton.regY = 24.5;
