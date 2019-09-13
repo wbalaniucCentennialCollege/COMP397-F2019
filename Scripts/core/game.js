@@ -55,12 +55,17 @@
                 stage.addChild(currentScene);
                 break;
             case config.Scene.GAME:
-                console.log("GAME state");
+                stage.removeAllChildren();
+                currentScene = new scenes.PlayScene(assetManager);
+                stage.addChild(currentScene);
                 break;
             case config.Scene.OVER:
-                console.log("OVER state");
+                stage.removeAllChildren();
+                currentScene = new scenes.GameOverScene(assetManager);
+                stage.addChild(currentScene);
                 break;
         }
+        currentState = objects.Game.currentScene;
     }
     window.onload = Init;
 })();
