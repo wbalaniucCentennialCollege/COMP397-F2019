@@ -5,14 +5,17 @@
     // Global Game Variables
     let canvas = document.getElementById("canvas");
     let stage:createjs.Stage;
-    let helloLabel:objects.Label; 
-    let clickableButton:objects.Button;
 
     let assetManager:createjs.LoadQueue;
     let assetManifest: any[];
 
+    // Store current scene and state information
+    let currentScene:objects.Scene;
+    let currentState:number
+
     assetManifest = [
-        {id: "clickMeButton", src:"./Assets/ClickMeButton.png"}
+        {id: "backButton", src:"./Assets/BackButton.png"},
+        {id: "nextButton", src:"./Assets/NextButton.png"}
     ];
 
     function Init() {
@@ -34,34 +37,47 @@
         stage.enableMouseOver(20); 
         createjs.Ticker.framerate = 60; // 60 FPS
         createjs.Ticker.on("tick", Update);
+
+        // Set up default game state
+        objects.Game.currentScene = config.Scene.START;
+        currentState = config.Scene.START; 
+
         Main();
     }
 
     function Update() {
+        // Has my state changed since the last check?
+        if(currentState != objects.Game.currentScene) {
+            console.log("Changing scenes to" + objects.Game.currentScene);
+            Main();
+        }
+
+        currentScene.Update();
+
         stage.update();
-        helloLabel.rotation += 5;
     }
 
     function clickableButtonMouseClick():void {
-        helloLabel.text = "Clicked";
         console.log("AHHHHHHH");
     }
 
     function Main() {
         console.log("Game Start...");
 
-        helloLabel = new objects.Label("Hello World", "40px", "Consolas", "#000000", 320, 240, true);
-
-        stage.addChild(helloLabel); // Add the label to the stage
-
-        // Button Initialization
-        clickableButton = new objects.Button(assetManager, "clickMeButton", 320, 340);
-
-        clickableButton.regX = 95;
-        clickableButton.regY = 24.5;
-
-        clickableButton.on("click", clickableButtonMouseClick);
-        stage.addChild(clickableButton);
+        // Finite State Machine
+        switch(objects.Game.currentScene) {
+            case config.Scene.START:
+                stage.removeAllChildren();
+                currentScene = new scenes.StartScene(assetManager);
+                stage.addChild(currentScene);
+            break;
+            case config.Scene.GAME:
+                console.log("GAME state");
+            break;
+            case config.Scene.OVER:
+                console.log("OVER state");
+            break;
+        }
     }
 
     window.onload = Init;
