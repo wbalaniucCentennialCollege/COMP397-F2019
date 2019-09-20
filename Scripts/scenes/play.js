@@ -24,25 +24,15 @@ var scenes;
         // Methods
         PlayScene.prototype.Start = function () {
             // Initialize our variables
-            this.playLabel = new objects.Label("Game Playing", "40px", "Consolas", "#000000", 320, 240, true);
-            this.nextButton = new objects.Button(this.assetManager, "nextButton", 500, 340);
-            this.backButton = new objects.Button(this.assetManager, "backButton", 100, 340);
+            this.background = new objects.Background(this.assetManager);
             this.Main();
         };
-        PlayScene.prototype.Update = function () { };
-        PlayScene.prototype.nextButtonClick = function () {
-            objects.Game.currentScene = config.Scene.OVER;
-        };
-        PlayScene.prototype.backButtonClick = function () {
-            objects.Game.currentScene = config.Scene.START;
+        PlayScene.prototype.Update = function () {
+            // Update the background here
+            this.background.Update();
         };
         PlayScene.prototype.Main = function () {
-            this.addChild(this.playLabel);
-            this.addChild(this.nextButton);
-            this.addChild(this.backButton);
-            // Define event handlers for the buttons
-            this.nextButton.on("click", this.nextButtonClick);
-            this.backButton.on("click", this.backButtonClick);
+            this.addChild(this.background);
         };
         return PlayScene;
     }(objects.Scene));
