@@ -23,17 +23,21 @@ var scenes;
         }
         StartScene.prototype.Start = function () {
             // Initialize our objects for this scene
-            this.welcomeLabel = new objects.Label("Welcome to School!", "60px", "Consolas", "#000000", 320, 240, true);
+            this.background = new objects.Background(this.assetManager);
+            this.welcomeLabel = new objects.Label("Welcome to School!", "60px", "Consolas", "#FFFFFF", 320, 240, true);
             this.startButton = new objects.Button(this.assetManager, "nextButton", 320, 300);
             this.Main();
         };
-        StartScene.prototype.Update = function () { };
+        StartScene.prototype.Update = function () {
+            // this.background.Update();
+        };
         StartScene.prototype.startButtonClick = function () {
             // Change our game state from START to GAME
             objects.Game.currentScene = config.Scene.GAME;
         };
         StartScene.prototype.Main = function () {
             // Add items to our scene
+            this.addChild(this.background);
             this.addChild(this.welcomeLabel);
             this.addChild(this.startButton);
             this.startButton.on("click", this.startButtonClick);

@@ -10,7 +10,8 @@
     var currentState;
     assetManifest = [
         { id: "backButton", src: "./Assets/BackButton.png" },
-        { id: "nextButton", src: "./Assets/NextButton.png" }
+        { id: "nextButton", src: "./Assets/NextButton.png" },
+        { id: "background", src: "./Assets/background.png" }
     ];
     function Init() {
         console.log("Initialization Start");
