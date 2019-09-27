@@ -16,7 +16,8 @@
     assetManifest = [
         {id: "backButton", src:"./Assets/BackButton.png"},
         {id: "nextButton", src:"./Assets/NextButton.png"},
-        {id: "background", src:"./Assets/background.png"}
+        {id: "background", src:"./Assets/background.png"},
+        {id: "player", src:"./Assets/Spaceship.png"}
     ];
 
     function Init() {
@@ -40,6 +41,8 @@
         createjs.Ticker.on("tick", Update);
 
         // Set up default game state
+        // Create a global reference to our stage object
+        objects.Game.stage = stage;
         objects.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START; 
 

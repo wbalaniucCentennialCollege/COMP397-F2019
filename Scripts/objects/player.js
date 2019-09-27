@@ -23,12 +23,21 @@ var objects;
             return _this;
         }
         // Methods
-        Player.prototype.Start = function () { };
-        Player.prototype.Update = function () { };
+        Player.prototype.Start = function () {
+            // Set the initial position
+            this.y = 700;
+            this.x = 320;
+            //this.scaleX = 0.25;
+            //this.scaleY = 0.25;
+        };
+        Player.prototype.Update = function () {
+            this.Move();
+            this.CheckBound(); // <-- Check collisions
+        };
         Player.prototype.Reset = function () { };
         Player.prototype.Move = function () {
-            // We reference the stage objects and get mouse position
-            // this.x = objects.Game.stage.mouseX;
+            // We reference the stage object and get mouse position
+            this.x = objects.Game.stage.mouseX;
             // This is evetually replaced with keyboard input
             // Maybe xbox controller...
         };
