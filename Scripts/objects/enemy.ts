@@ -17,10 +17,10 @@ module objects {
         }
         public Reset():void {}
         public Move():void {
-            this.y += 0.1;
+            this.y += 5;
         }
         public CheckBounds():void {
-            if(this.y >= 900) {
+            if(this.y >= 900 + this.halfH + 5) {
                 this.y = -50;
             }
         }
