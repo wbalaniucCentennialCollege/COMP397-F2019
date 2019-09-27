@@ -41,7 +41,16 @@ var objects;
             // This is evetually replaced with keyboard input
             // Maybe xbox controller...
         };
-        Player.prototype.CheckBound = function () { };
+        Player.prototype.CheckBound = function () {
+            // Right boundary
+            if (this.x >= 640 - this.halfW) {
+                this.x = 640 - this.halfW;
+            }
+            // Left boundary
+            if (this.x <= this.halfW) {
+                this.x = this.halfW;
+            }
+        };
         return Player;
     }(objects.GameObject));
     objects.Player = Player;
