@@ -37,6 +37,7 @@ module scenes {
 
             this.enemies.forEach(e => {
                 e.Update();
+                managers.Collision.Check(this.player, e);
             });
         }
 
