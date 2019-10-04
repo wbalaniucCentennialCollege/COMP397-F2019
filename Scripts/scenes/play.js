@@ -23,15 +23,18 @@ var scenes;
         }
         // Methods
         PlayScene.prototype.Start = function () {
-            // Initialize our variables
+            // Initialize background
             this.background = new objects.Background(this.assetManager);
+            // Initialize player
             this.player = new objects.Player(this.assetManager);
-            // this.enemy = new objects.Enemy(this.assetManager);
+            // Initialize enemies
             this.enemies = new Array();
             this.enemyNum = 5;
             for (var i = 0; i < this.enemyNum; i++) {
                 this.enemies[i] = new objects.Enemy(this.assetManager);
             }
+            // Initialize my scoreboard
+            this.scoreBoard = new managers.Scoreboard;
             // Initialize Sound
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("play_music");
@@ -55,10 +58,12 @@ var scenes;
             // Order matters when adding game objects.
             this.addChild(this.background);
             this.addChild(this.player);
-            // this.addChild(this.enemy);
+            // this.addChild(this.enemy);s
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
             });
+            this.addChild(this.scoreBoard.scoreLabel);
+            this.addChild(this.scoreBoard.highScoreLabel);
         };
         return PlayScene;
     }(objects.Scene));

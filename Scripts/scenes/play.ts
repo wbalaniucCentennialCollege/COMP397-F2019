@@ -3,9 +3,9 @@ module scenes {
         // Variables
         private background:objects.Background;
         private player:objects.Player;
-        // private enemy:objects.Enemy;
         private enemies:objects.Enemy[];
         private enemyNum:number;
+        private scoreBoard:managers.Scoreboard;
 
         private backgroundMusic: createjs.AbstractSoundInstance;
 
@@ -18,15 +18,21 @@ module scenes {
 
         // Methods
         public Start(): void {
-            // Initialize our variables
+            // Initialize background
             this.background = new objects.Background(this.assetManager);
+
+            // Initialize player
             this.player = new objects.Player(this.assetManager);
-            // this.enemy = new objects.Enemy(this.assetManager);
+
+            // Initialize enemies
             this.enemies = new Array<objects.Enemy>();
             this.enemyNum = 5;
             for(let i = 0; i < this.enemyNum; i++) {
                 this.enemies[i] = new objects.Enemy(this.assetManager);
             }
+
+            // Initialize my scoreboard
+            this.scoreBoard = new managers.Scoreboard;
             
             // Initialize Sound
             createjs.Sound.stop();
@@ -53,10 +59,13 @@ module scenes {
             // Order matters when adding game objects.
             this.addChild(this.background);
             this.addChild(this.player);
-            // this.addChild(this.enemy);
+            // this.addChild(this.enemy);s
             this.enemies.forEach(e => {
                 this.addChild(e);
             });
+            
+            this.addChild(this.scoreBoard.scoreLabel);
+            this.addChild(this.scoreBoard.highScoreLabel);
         }
     }
 }
