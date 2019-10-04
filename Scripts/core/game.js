@@ -13,7 +13,10 @@
         { id: "nextButton", src: "./Assets/NextButton.png" },
         { id: "background", src: "./Assets/background.png" },
         { id: "player", src: "./Assets/Spaceship.png" },
-        { id: "enemy", src: "./Assets/ship.png" }
+        { id: "enemy", src: "./Assets/ship.png" },
+        { id: "explosion", src: "./Assets/Sound/explosion.ogg" },
+        { id: "play_music", src: "./Assets/Sound/level_music.wav" },
+        { id: "start_music", src: "./Assets/Sound/start_music.wav" }
     ];
     function Init() {
         console.log("Initialization Start");

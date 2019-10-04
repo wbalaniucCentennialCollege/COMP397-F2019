@@ -26,6 +26,9 @@ var scenes;
             this.background = new objects.Background(this.assetManager);
             this.welcomeLabel = new objects.Label("Welcome to School!", "60px", "Consolas", "#FFFFFF", 320, 240, true);
             this.startButton = new objects.Button(this.assetManager, "nextButton", 320, 300);
+            this.backgroundMusic = createjs.Sound.play("start_music");
+            this.backgroundMusic.loop = -1;
+            this.backgroundMusic.volume = 0.5;
             this.Main();
         };
         StartScene.prototype.Update = function () {
