@@ -50,7 +50,12 @@ var scenes;
             // this.enemy.Update();
             this.enemies.forEach(function (e) {
                 e.Update();
-                managers.Collision.Check(_this.player, e);
+                _this.player.isDead = managers.Collision.Check(_this.player, e);
+                if (_this.player.isDead) {
+                    // Disable music
+                    _this.backgroundMusic.stop();
+                    objects.Game.currentScene = config.Scene.OVER;
+                }
             });
         };
         PlayScene.prototype.Main = function () {

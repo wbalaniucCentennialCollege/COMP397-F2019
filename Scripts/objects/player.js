@@ -15,7 +15,6 @@ var objects;
 (function (objects) {
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
-        // Variables
         // Constructor
         function Player(assetManager) {
             var _this = _super.call(this, assetManager, "player") || this;
@@ -27,6 +26,7 @@ var objects;
             // Set the initial position
             this.y = 700;
             this.x = 320;
+            this.isDead = false;
             //this.scaleX = 0.25;
             //this.scaleY = 0.25;
         };

@@ -1,6 +1,7 @@
 module objects {
     export class Player extends objects.GameObject {
         // Variables
+        public isDead:boolean;
         // Constructor
         constructor(assetManager:createjs.LoadQueue) {
             super(assetManager, "player");
@@ -11,7 +12,9 @@ module objects {
             // Set the initial position
             this.y = 700;
             this.x = 320;
-
+            
+            this.isDead = false;
+            
             //this.scaleX = 0.25;
             //this.scaleY = 0.25;
         }

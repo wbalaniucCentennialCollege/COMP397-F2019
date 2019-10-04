@@ -51,7 +51,13 @@ module scenes {
 
             this.enemies.forEach(e => {
                 e.Update();
-                managers.Collision.Check(this.player, e);
+                this.player.isDead = managers.Collision.Check(this.player, e);
+
+                if(this.player.isDead) {
+                    // Disable music
+                    this.backgroundMusic.stop();
+                    objects.Game.currentScene = config.Scene.OVER;
+                }
             });
         }
 
