@@ -37,8 +37,16 @@ var objects;
         Player.prototype.Reset = function () { };
         Player.prototype.Move = function () {
             // We reference the stage object and get mouse position
-            this.x = objects.Game.stage.mouseX;
+            // this.x = objects.Game.stage.mouseX;
             // This is evetually replaced with keyboard input
+            // When I use "objects.Game.keyboardManager" it is a reference 
+            // to the global keyboardmanager object
+            if (objects.Game.keyboardManager.moveLeft) {
+                this.x -= 7.5;
+            }
+            if (objects.Game.keyboardManager.moveRight) {
+                this.x += 7.5;
+            }
             // Maybe xbox controller...
         };
         Player.prototype.CheckBound = function () {

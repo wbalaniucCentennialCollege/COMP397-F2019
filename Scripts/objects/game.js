@@ -1,3 +1,4 @@
+// GLOBAL GAME VARIABLES
 var objects;
 (function (objects) {
     var Game = /** @class */ (function () {
