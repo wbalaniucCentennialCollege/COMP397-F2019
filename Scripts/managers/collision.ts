@@ -8,7 +8,7 @@ module managers {
             if(math.Vec2.Distance(P1, P2) < (object1.halfH + object2.halfH)) {
                 if(!object2.isColliding) {
 
-                    object2.alpha 
+                    
                     // React to our collision
                     
                     switch(object2.name) {
