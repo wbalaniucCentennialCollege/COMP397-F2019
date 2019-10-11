@@ -9,6 +9,9 @@ module managers {
                 if(!object2.isColliding) {
                     // React to our collision
                     
+                    // Set an objects alpha to be invisible
+                    // Then reposition it and use it again in the pool
+                    
                     switch(object2.name) {
                         case "enemy":
                             createjs.Sound.play("explosion");

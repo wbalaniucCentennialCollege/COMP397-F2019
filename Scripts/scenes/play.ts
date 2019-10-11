@@ -70,8 +70,7 @@ module scenes {
                 this.addChild(e);
             });
             
-            this.addChild(this.scoreBoard.scoreLabel);
-            this.addChild(this.scoreBoard.highScoreLabel);
+            this.addChild(this.scoreBoard);
         }
     }
 }
