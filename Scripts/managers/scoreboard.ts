@@ -37,7 +37,6 @@ module managers {
 
             this.Main();
         }
-
         private Main():void {
             this.addChild(this.scoreLabel);
             this.addChild(this.highScoreLabel);

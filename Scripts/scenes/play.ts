@@ -75,6 +75,7 @@ module scenes {
             this.enemies.forEach(e => {
                 this.addChild(e);
             });
+            
             this.addChild(this.scoreBoard);
         }
     }
