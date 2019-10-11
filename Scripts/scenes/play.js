@@ -35,6 +35,8 @@ var scenes;
             }
             // Initialize my scoreboard
             this.scoreBoard = new managers.Scoreboard;
+            this.scoreBoard.x = 10;
+            this.scoreBoard.y = 10;
             // Initialize Sound
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("play_music");
