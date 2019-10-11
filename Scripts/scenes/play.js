@@ -25,6 +25,8 @@ var scenes;
         PlayScene.prototype.Start = function () {
             // Initialize background
             this.background = new objects.Background(this.assetManager);
+            this.background2 = new objects.Background(this.assetManager);
+            this.background.y = -124;
             // Initialize player
             this.player = new objects.Player(this.assetManager);
             // Initialize enemies
@@ -35,6 +37,8 @@ var scenes;
             }
             // Initialize my scoreboard
             this.scoreBoard = new managers.Scoreboard;
+            this.scoreBoard.x = 10;
+            this.scoreBoard.y = 10;
             // Initialize Sound
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("play_music");
@@ -46,6 +50,7 @@ var scenes;
             var _this = this;
             // Update the background here
             this.background.Update();
+            this.background2.Update();
             this.player.Update();
             // this.enemy.Update();
             this.enemies.forEach(function (e) {
@@ -62,13 +67,13 @@ var scenes;
             var _this = this;
             // Order matters when adding game objects.
             this.addChild(this.background);
+            this.addChild(this.background2);
             this.addChild(this.player);
             // this.addChild(this.enemy);s
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
             });
-            this.addChild(this.scoreBoard.scoreLabel);
-            this.addChild(this.scoreBoard.highScoreLabel);
+            this.addChild(this.scoreBoard);
         };
         return PlayScene;
     }(objects.Scene));

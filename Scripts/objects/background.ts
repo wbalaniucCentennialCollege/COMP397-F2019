@@ -11,7 +11,7 @@ module objects {
         // Functions 
         // Initializing our variables with default values
         public Start():void {
-            this.speedY = 0.5;
+            this.speedY = 5;
             this.Reset();
         }
         // Updated 60 times per second (60FPS)
@@ -21,7 +21,7 @@ module objects {
         }
         // Resets the position of the object
         public Reset():void {
-            this.y = -124;
+            this.y = -1124;
         }
         // Move the object
         public Move():void {
@@ -29,7 +29,7 @@ module objects {
         }
         // Collision Detection 
         public CheckBound():void {
-            if(this.y >= 0) {
+            if(this.y >= 900) {
                 this.Reset();
             }
         }
