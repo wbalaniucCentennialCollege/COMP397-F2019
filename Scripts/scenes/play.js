@@ -62,7 +62,7 @@ var scenes;
                     _this.backgroundMusic.stop();
                     // managers.Game.currentScene = config.Scene.OVER;
                     // Create my explosion
-                    _this.explosion = new objects.Explosion(_this.player.x, _this.player.y);
+                    _this.explosion = new objects.Explosion(_this.player.x - _this.player.halfW, _this.player.y - _this.player.halfH);
                     _this.explosion.on("animationend", _this.handleExplosion);
                     _this.addChild(_this.explosion);
                     _this.isExploding = true;

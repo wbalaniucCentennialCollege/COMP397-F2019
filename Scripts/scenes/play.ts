@@ -66,7 +66,7 @@ module scenes {
                     // managers.Game.currentScene = config.Scene.OVER;
 
                     // Create my explosion
-                    this.explosion = new objects.Explosion(this.player.x, this.player.y);
+                    this.explosion = new objects.Explosion(this.player.x - this.player.halfW, this.player.y - this.player.halfH);
                     this.explosion.on("animationend", this.handleExplosion);
                     this.addChild(this.explosion);
                     this.isExploding = true;
