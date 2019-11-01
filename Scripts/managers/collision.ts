@@ -7,6 +7,8 @@ module managers {
 
             if(math.Vec2.Distance(P1, P2) < (object1.halfH + object2.halfH)) {
                 if(!object2.isColliding) {
+
+                    
                     // React to our collision
                     
                     // Set an objects alpha to be invisible

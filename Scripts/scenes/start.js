@@ -24,6 +24,7 @@ var scenes;
         StartScene.prototype.Start = function () {
             // Initialize our objects for this scene
             this.background = new objects.Background(this.assetManager);
+            this.background.y = -124;
             this.welcomeLabel = new objects.Label("Welcome to School!", "60px", "Consolas", "#FFFFFF", 320, 240, true);
             this.startButton = new objects.Button(this.assetManager, "nextButton", 320, 300);
             this.backgroundMusic = createjs.Sound.play("start_music");

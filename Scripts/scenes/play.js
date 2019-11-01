@@ -25,6 +25,8 @@ var scenes;
         PlayScene.prototype.Start = function () {
             // Initialize background
             this.background = new objects.Background(this.assetManager);
+            this.background2 = new objects.Background(this.assetManager);
+            this.background.y = -124;
             // Initialize player
             this.player = new objects.Player(this.assetManager);
             // Initialize enemies
@@ -48,6 +50,7 @@ var scenes;
             var _this = this;
             // Update the background here
             this.background.Update();
+            this.background2.Update();
             this.player.Update();
             // this.enemy.Update();
             this.enemies.forEach(function (e) {
@@ -64,6 +67,7 @@ var scenes;
             var _this = this;
             // Order matters when adding game objects.
             this.addChild(this.background);
+            this.addChild(this.background2);
             this.addChild(this.player);
             // this.addChild(this.enemy);s
             this.enemies.forEach(function (e) {

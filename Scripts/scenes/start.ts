@@ -16,6 +16,7 @@ module scenes {
         public Start():void {
             // Initialize our objects for this scene
             this.background = new objects.Background(this.assetManager);
+            this.background.y = -124;
 
             this.welcomeLabel = new objects.Label(
                 "Welcome to School!", "60px", "Consolas", "#FFFFFF", 320, 240, true);
