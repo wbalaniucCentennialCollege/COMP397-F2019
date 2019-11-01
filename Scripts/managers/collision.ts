@@ -13,13 +13,6 @@ module managers {
                     
                     // Set an objects alpha to be invisible
                     // Then reposition it and use it again in the pool
-                    
-                    switch(object2.name) {
-                        case "enemy":
-                            createjs.Sound.play("explosion");
-                        break;
-                    }
-
 
                     object2.isColliding = true;
                     return true;

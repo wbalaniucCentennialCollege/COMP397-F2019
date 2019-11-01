@@ -7,20 +7,27 @@
 "framerate": 20,
 "frames": [
     [0, 0, 98, 84, 0, 0, 0],
-    [98, 0, 41, 60, 0, 0, 0],
-    [139, 0, 39, 31, 0, 0, 0],
-    [139, 31, 39, 31, 0, 0, 0]
+    [0, 84, 36, 36, 0, -45, -45],
+    [36, 84, 39, 31, 0, 0, 0],
+    [75, 84, 39, 31, 0, 0, 0],
+    [98, 0, 74, 62, 0, -27, -31],
+    [114, 62, 74, 62, 0, -27, -31],
+    [172, 0, 68, 62, 0, -31, -31],
+    [188, 62, 68, 62, 0, -31, -31],
+    [240, 0, 66, 60, 0, -33, -31],
+    [256, 60, 41, 60, 0, 0, 0]
 ],
 
 "animations": {
     "ship": { "frames": [0] },
-    "Spaceship": { "frames": [1] },
+    "Explosion Large": { "frames": [1, 6, 8, 7, 4, 5] },
     "BackButton": { "frames": [2] },
-    "NextButton": { "frames": [3] }
+    "NextButton": { "frames": [3] },
+    "Spaceship": { "frames": [9] }
 },
 
 "texturepacker": [
-        "SmartUpdateHash: $TexturePacker:SmartUpdate:2fdaa6663edec47c622b774709a95648:abcad507ec0347958f8ef5900e919574:b1740a83e5e22e884b4ddd05e8e24e39$",
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:491e64d538d69a03635fbd11aec2ee38:54edfcf887c5fbb02246821077e5cb26:b1740a83e5e22e884b4ddd05e8e24e39$",
         "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
 ]
 
