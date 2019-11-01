@@ -13,7 +13,7 @@
     var textureAtlas;
     textureAtlasData = {
         "images": [
-            "./Assets/Sprites/textureAltas.png"
+            ""
         ],
         "framerate": 20,
         "frames": [
@@ -40,6 +40,7 @@
         },
     };
     assetManifest = [
+        { id: "textureAtlas", src: "./Assets/Sprites/textureAltas.png" },
         { id: "background", src: "./Assets/background.png" },
         { id: "explosion", src: "./Assets/Sound/explosion.ogg" },
         { id: "play_music", src: "./Assets/Sound/level_music.wav" },
@@ -48,7 +49,6 @@
     function Init() {
         console.log("Initialization Start");
         // Start();
-        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
         assetManager = new createjs.LoadQueue();
         assetManager.installPlugin(createjs.Sound);
         assetManager.loadManifest(assetManifest);
@@ -56,6 +56,8 @@
     }
     function Start() {
         console.log("Starting Application...");
+        textureAtlasData.images = [assetManager.getResult("textureAtlas")];
+        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
         // Initialize CreateJS
         stage = new createjs.Stage(canvas);
         // Freqeuncy of checks. Computationally expensive. Turn on in menus, Turn off in game
