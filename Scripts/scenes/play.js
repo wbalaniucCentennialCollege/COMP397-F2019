@@ -59,7 +59,7 @@ var scenes;
                 if (_this.player.isDead) {
                     // Disable music
                     _this.backgroundMusic.stop();
-                    objects.Game.currentScene = config.Scene.OVER;
+                    managers.Game.currentScene = config.Scene.OVER;
                 }
             });
         };

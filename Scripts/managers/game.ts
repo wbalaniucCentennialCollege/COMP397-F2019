@@ -1,5 +1,5 @@
 // GLOBAL GAME VARIABLES
-module objects {
+module managers {
     export class Game {
         public static stage: createjs.Stage;
         public static assetManager: createjs.LoadQueue;

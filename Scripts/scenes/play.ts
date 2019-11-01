@@ -61,7 +61,7 @@ module scenes {
                 if(this.player.isDead) {
                     // Disable music
                     this.backgroundMusic.stop();
-                    objects.Game.currentScene = config.Scene.OVER;
+                    managers.Game.currentScene = config.Scene.OVER;
                 }
             });
         }

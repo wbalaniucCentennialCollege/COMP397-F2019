@@ -48,21 +48,21 @@
 
         // Set up default game state
         // Create a global reference to our stage object
-        objects.Game.stage = stage;
-        objects.Game.currentScene = config.Scene.START;
+        managers.Game.stage = stage;
+        managers.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START; 
 
         // Create our keyboard object and set the global reference
         keyboardManager = new managers.Keyboard;
-        objects.Game.keyboardManager = keyboardManager;
+        managers.Game.keyboardManager = keyboardManager;
 
         Main();
     }
 
     function Update() {
         // Has my state changed since the last check?
-        if(currentState != objects.Game.currentScene) {
-            console.log("Changing scenes to" + objects.Game.currentScene);
+        if(currentState != managers.Game.currentScene) {
+            console.log("Changing scenes to" + managers.Game.currentScene);
             Main();
         }
 
@@ -79,7 +79,7 @@
         console.log("Game Start...");
 
         // Finite State Machine
-        switch(objects.Game.currentScene) {
+        switch(managers.Game.currentScene) {
             case config.Scene.START:
                 stage.removeAllChildren();
                 currentScene = new scenes.StartScene(assetManager);
@@ -97,8 +97,8 @@
             break;
         }
 
-        currentState = objects.Game.currentScene;
-        objects.Game.currentSceneObject = currentScene;
+        currentState = managers.Game.currentScene;
+        managers.Game.currentSceneObject = currentScene;
     }
 
     window.onload = Init;
