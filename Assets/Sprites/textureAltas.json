@@ -1,0 +1,27 @@
+{
+
+"images": [
+    "textureAltas.png"
+],
+
+"framerate": 20,
+"frames": [
+    [0, 0, 98, 84, 0, 0, 0],
+    [98, 0, 41, 60, 0, 0, 0],
+    [139, 0, 39, 31, 0, 0, 0],
+    [139, 31, 39, 31, 0, 0, 0]
+],
+
+"animations": {
+    "ship": { "frames": [0] },
+    "Spaceship": { "frames": [1] },
+    "BackButton": { "frames": [2] },
+    "NextButton": { "frames": [3] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:2fdaa6663edec47c622b774709a95648:abcad507ec0347958f8ef5900e919574:b1740a83e5e22e884b4ddd05e8e24e39$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

@@ -16,8 +16,8 @@ var objects;
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
         // Constructor
-        function Player(assetManager) {
-            var _this = _super.call(this, assetManager, "player") || this;
+        function Player() {
+            var _this = _super.call(this, "player") || this;
             _this.Start();
             return _this;
         }

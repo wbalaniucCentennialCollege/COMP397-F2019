@@ -16,24 +16,24 @@ var scenes;
     var PlayScene = /** @class */ (function (_super) {
         __extends(PlayScene, _super);
         // Constructor
-        function PlayScene(assetManager) {
-            var _this = _super.call(this, assetManager) || this;
+        function PlayScene() {
+            var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         // Methods
         PlayScene.prototype.Start = function () {
             // Initialize background
-            this.background = new objects.Background(this.assetManager);
-            this.background2 = new objects.Background(this.assetManager);
+            this.background = new objects.Background();
+            this.background2 = new objects.Background();
             this.background.y = -124;
             // Initialize player
-            this.player = new objects.Player(this.assetManager);
+            this.player = new objects.Player();
             // Initialize enemies
             this.enemies = new Array();
             this.enemyNum = 5;
             for (var i = 0; i < this.enemyNum; i++) {
-                this.enemies[i] = new objects.Enemy(this.assetManager);
+                this.enemies[i] = new objects.Enemy();
             }
             // Initialize my scoreboard
             this.scoreBoard = new managers.Scoreboard;

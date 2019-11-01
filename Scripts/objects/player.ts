@@ -3,8 +3,8 @@ module objects {
         // Variables
         public isDead:boolean;
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
-            super(assetManager, "player");
+        constructor() {
+            super("player");
             this.Start();
         }
         // Methods

@@ -15,12 +15,33 @@
 
     let keyboardManager: managers.Keyboard;
 
+    let textureAtlasData: any;              // JSON file. It has a variety of types
+    let textureAtlas: createjs.SpriteSheet;
+
+    textureAtlasData = {
+
+        "images": [
+            "./Assets/Sprites/textureAltas.png"
+        ],
+        
+        "framerate": 20,
+        "frames": [
+            [0, 0, 98, 84, 0, 0, 0],
+            [98, 0, 41, 60, 0, 0, 0],
+            [139, 0, 39, 31, 0, 0, 0],
+            [139, 31, 39, 31, 0, 0, 0]
+        ],
+        
+        "animations": {
+            "enemy": { "frames": [0] },
+            "player": { "frames": [1] },
+            "backButton": { "frames": [2] },
+            "nextButton": { "frames": [3] }
+        },  
+    };
+
     assetManifest = [
-        {id: "backButton", src:"./Assets/BackButton.png"},
-        {id: "nextButton", src:"./Assets/NextButton.png"},
         {id: "background", src:"./Assets/background.png"},
-        {id: "player", src:"./Assets/Spaceship.png"},
-        {id: "enemy", src:"./Assets/ship.png"},
         {id: "explosion", src:"./Assets/Sound/explosion.ogg"},
         {id: "play_music", src:"./Assets/Sound/level_music.wav"},
         {id: "start_music", src:"./Assets/Sound/start_music.wav"}
@@ -29,6 +50,7 @@
     function Init() {
         console.log("Initialization Start");
         // Start();
+        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
 
         assetManager = new createjs.LoadQueue();
         assetManager.installPlugin(createjs.Sound);
@@ -56,6 +78,10 @@
         keyboardManager = new managers.Keyboard;
         managers.Game.keyboardManager = keyboardManager;
 
+        // Setup global reference to asset manager and textureAtlas
+        managers.Game.assetManager = assetManager;
+        managers.Game.textureAtlas = textureAtlas;
+
         Main();
     }
 
@@ -82,17 +108,17 @@
         switch(managers.Game.currentScene) {
             case config.Scene.START:
                 stage.removeAllChildren();
-                currentScene = new scenes.StartScene(assetManager);
+                currentScene = new scenes.StartScene();
                 stage.addChild(currentScene);
             break;
             case config.Scene.GAME:
                 stage.removeAllChildren();
-                currentScene = new scenes.PlayScene(assetManager);
+                currentScene = new scenes.PlayScene();
                 stage.addChild(currentScene);
             break;
             case config.Scene.OVER:
                 stage.removeAllChildren();
-                currentScene = new scenes.GameOverScene(assetManager);
+                currentScene = new scenes.GameOverScene();
                 stage.addChild(currentScene);
             break;
         }
