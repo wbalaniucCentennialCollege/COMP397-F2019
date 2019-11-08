@@ -62,29 +62,17 @@ module scenes {
             this.laserManager.Update();
 
             this.enemies.forEach(e => {
-                /* WE ARE GOING TO CHANGE ALL OF THIS. SIT TIGHT.
-                e.Update();
-                this.player.isDead = managers.Collision.Check(this.player, e);
+                if(!e.isDead) {
+                    e.Update();
 
-                if(this.player.isDead && !this.isExploding) {
-                    // Disable music
-                    this.backgroundMusic.stop();
-                    // managers.Game.currentScene = config.Scene.OVER;
-
-                    // Create my explosion
-                    this.explosion = new objects.Explosion(this.player.x - this.player.halfW, this.player.y - this.player.halfH);
-                    this.explosion.on("animationend", this.handleExplosion);
-                    this.addChild(this.explosion);
-                    this.isExploding = true;
-                    this.removeChild(this.player);
+                    managers.Collision.CheckAABB(this.player, e);
                 }
-                */
             });
 
             // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
             this.laserManager.Lasers.forEach(laser => {
                 this.enemies.forEach(enemy => {
-                    managers.Collision.Check(laser, enemy);
+                    managers.Collision.CheckAABB(laser, enemy);
                 });
             });
         }

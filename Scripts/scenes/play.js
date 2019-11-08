@@ -58,28 +58,15 @@ var scenes;
             this.player.Update();
             this.laserManager.Update();
             this.enemies.forEach(function (e) {
-                /* WE ARE GOING TO CHANGE ALL OF THIS. SIT TIGHT.
-                e.Update();
-                this.player.isDead = managers.Collision.Check(this.player, e);
-
-                if(this.player.isDead && !this.isExploding) {
-                    // Disable music
-                    this.backgroundMusic.stop();
-                    // managers.Game.currentScene = config.Scene.OVER;
-
-                    // Create my explosion
-                    this.explosion = new objects.Explosion(this.player.x - this.player.halfW, this.player.y - this.player.halfH);
-                    this.explosion.on("animationend", this.handleExplosion);
-                    this.addChild(this.explosion);
-                    this.isExploding = true;
-                    this.removeChild(this.player);
+                if (!e.isDead) {
+                    e.Update();
+                    managers.Collision.CheckAABB(_this.player, e);
                 }
-                */
             });
             // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
             this.laserManager.Lasers.forEach(function (laser) {
                 _this.enemies.forEach(function (enemy) {
-                    managers.Collision.Check(laser, enemy);
+                    managers.Collision.CheckAABB(laser, enemy);
                 });
             });
         };

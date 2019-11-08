@@ -91,6 +91,8 @@
         managers.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START; 
 
+        managers.Game.currentSceneObject = currentScene;
+
         // Create our keyboard object and set the global reference
         keyboardManager = new managers.Keyboard;
         managers.Game.keyboardManager = keyboardManager;

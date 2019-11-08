@@ -15,33 +15,35 @@ var objects;
 (function (objects) {
     var Enemy = /** @class */ (function (_super) {
         __extends(Enemy, _super);
-        // Variables
         // Constructor
         function Enemy() {
             var _this = _super.call(this, "enemy") || this;
+            // Variables
+            _this.isDead = false;
             _this.Start();
             return _this;
         }
         // Methods
         Enemy.prototype.Start = function () {
-            // this.x = 320;
-            // this.y = -50;
-            this.Reset();
+            this.x = Math.floor(Math.random() * 550) + 50;
+            this.y = Math.floor(Math.random() * -800) - 50;
+            // this.Reset();
         };
         Enemy.prototype.Update = function () {
             this.Move();
             this.CheckBounds();
         };
         Enemy.prototype.Reset = function () {
-            this.x = Math.floor(Math.random() * 550) + 50;
-            this.y = Math.floor(Math.random() * -800) - 50;
+            this.isDead = true;
+            this.x = -1000;
+            this.y = -1000;
         };
         Enemy.prototype.Move = function () {
             this.y += 5;
         };
         Enemy.prototype.CheckBounds = function () {
             if (this.y >= 900 + this.halfH + 5) {
-                this.Reset();
+                this.y = -50;
             }
         };
         return Enemy;
