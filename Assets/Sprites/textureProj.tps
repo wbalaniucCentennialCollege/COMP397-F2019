@@ -132,7 +132,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>textureAltas.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -163,7 +163,7 @@
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>extrude</key>
-            <uint>1</uint>
+            <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMargin</key>
@@ -232,6 +232,36 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">laser1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,8,11</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,8,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">laser2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,6,10,12</rect>
+                <key>scale9Paddings</key>
+                <rect>5,6,10,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../ship.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -260,6 +290,8 @@
             <filename>Explosion Large/Explosion Large-3.png</filename>
             <filename>Explosion Large/Explosion Large-4.png</filename>
             <filename>Explosion Large/Explosion Large-5.png</filename>
+            <filename>laser1.png</filename>
+            <filename>laser2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
