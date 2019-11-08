@@ -9,6 +9,7 @@ module scenes {
         private scoreBoard:managers.Scoreboard;
         private explosion:objects.Explosion;
         private isExploding:boolean = false;
+        private laserManager:managers.Laser;
 
         private backgroundMusic: createjs.AbstractSoundInstance;
 
@@ -27,6 +28,10 @@ module scenes {
             this.background.y = -124;
             // Initialize player
             this.player = new objects.Player();
+
+            // Initialize laser manager
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
 
             // Initialize enemies
             this.enemies = new Array<objects.Enemy>();
@@ -54,9 +59,10 @@ module scenes {
             this.background.Update();
             this.background2.Update();
             this.player.Update();
-            // this.enemy.Update();
+            this.laserManager.Update();
 
             this.enemies.forEach(e => {
+                /* WE ARE GOING TO CHANGE ALL OF THIS. SIT TIGHT.
                 e.Update();
                 this.player.isDead = managers.Collision.Check(this.player, e);
 
@@ -72,6 +78,14 @@ module scenes {
                     this.isExploding = true;
                     this.removeChild(this.player);
                 }
+                */
+            });
+
+            // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
+            this.laserManager.Lasers.forEach(laser => {
+                this.enemies.forEach(enemy => {
+                    managers.Collision.Check(laser, enemy);
+                });
             });
         }
 
@@ -83,6 +97,10 @@ module scenes {
             // this.addChild(this.enemy);s
             this.enemies.forEach(e => {
                 this.addChild(e);
+            });
+
+            this.laserManager.Lasers.forEach(laser => {
+                this.addChild(laser);
             });
             
             this.addChild(this.scoreBoard);

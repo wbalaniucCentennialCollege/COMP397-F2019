@@ -30,6 +30,9 @@ var scenes;
             this.background.y = -124;
             // Initialize player
             this.player = new objects.Player();
+            // Initialize laser manager
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
             // Initialize enemies
             this.enemies = new Array();
             this.enemyNum = 5;
@@ -53,21 +56,31 @@ var scenes;
             this.background.Update();
             this.background2.Update();
             this.player.Update();
-            // this.enemy.Update();
+            this.laserManager.Update();
             this.enemies.forEach(function (e) {
+                /* WE ARE GOING TO CHANGE ALL OF THIS. SIT TIGHT.
                 e.Update();
-                _this.player.isDead = managers.Collision.Check(_this.player, e);
-                if (_this.player.isDead && !_this.isExploding) {
+                this.player.isDead = managers.Collision.Check(this.player, e);
+
+                if(this.player.isDead && !this.isExploding) {
                     // Disable music
-                    _this.backgroundMusic.stop();
+                    this.backgroundMusic.stop();
                     // managers.Game.currentScene = config.Scene.OVER;
+
                     // Create my explosion
-                    _this.explosion = new objects.Explosion(_this.player.x - _this.player.halfW, _this.player.y - _this.player.halfH);
-                    _this.explosion.on("animationend", _this.handleExplosion);
-                    _this.addChild(_this.explosion);
-                    _this.isExploding = true;
-                    _this.removeChild(_this.player);
+                    this.explosion = new objects.Explosion(this.player.x - this.player.halfW, this.player.y - this.player.halfH);
+                    this.explosion.on("animationend", this.handleExplosion);
+                    this.addChild(this.explosion);
+                    this.isExploding = true;
+                    this.removeChild(this.player);
                 }
+                */
+            });
+            // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
+            this.laserManager.Lasers.forEach(function (laser) {
+                _this.enemies.forEach(function (enemy) {
+                    managers.Collision.Check(laser, enemy);
+                });
             });
         };
         PlayScene.prototype.Main = function () {
@@ -79,6 +92,9 @@ var scenes;
             // this.addChild(this.enemy);s
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
+            });
+            this.laserManager.Lasers.forEach(function (laser) {
+                _this.addChild(laser);
             });
             this.addChild(this.scoreBoard);
         };

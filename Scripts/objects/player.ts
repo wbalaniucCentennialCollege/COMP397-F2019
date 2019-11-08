@@ -1,6 +1,8 @@
 module objects {
     export class Player extends objects.GameObject {
         // Variables
+        private laserSpawn:math.Vec2;
+
         public isDead:boolean;
         // Constructor
         constructor() {
@@ -21,6 +23,7 @@ module objects {
         public Update():void {
             this.Move();
             this.CheckBound(); // <-- Check collisions
+            this.LaserFire();
         }
         public Reset():void {}
         public Move():void {
@@ -38,6 +41,14 @@ module objects {
             {
                 this.x += 7.5;
             }
+            if(managers.Game.keyboardManager.moveUp)
+            {
+                this.y -= 7.5;
+            }
+            if(managers.Game.keyboardManager.moveDown)
+            {
+                this.y += 7.5;
+            }
             // Maybe xbox controller...
         }
         public CheckBound():void {
@@ -49,6 +60,27 @@ module objects {
             // Left boundary
             if(this.x <= this.halfW) {
                 this.x = this.halfW;
+            }
+        }
+
+        public LaserFire():void {
+            if(!this.isDead) {
+                let ticker:number = createjs.Ticker.getTicks();
+
+                // Player is trying to shoot the laser
+                if((managers.Game.keyboardManager.shoot) && (ticker % 10 == 0)) {
+                    this.laserSpawn = new math.Vec2(this.x, this.y - this.halfH);
+                    let currentLaser = managers.Game.laserManager.CurrentLaser;
+                    let laser = managers.Game.laserManager.Lasers[currentLaser];
+                    laser.x = this.laserSpawn.x;
+                    laser.y = this.laserSpawn.y;
+                    managers.Game.laserManager.CurrentLaser++;
+                    if(managers.Game.laserManager.CurrentLaser > 49) {
+                        managers.Game.laserManager.CurrentLaser = 0;
+                    }
+
+                    // Play a laser sound
+                }
             }
         }
     }
