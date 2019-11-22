@@ -22,7 +22,8 @@ module objects {
             this.Move();
         }
         public Reset():void {
-            
+            this.x = -5000
+            this.y = -5000;
         }
         public Move():void {
             this.y += this.speedY;

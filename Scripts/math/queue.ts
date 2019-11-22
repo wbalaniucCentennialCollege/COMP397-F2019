@@ -1,13 +1,18 @@
-module managers {
+module math {
     export class Queue<T> {
+        _arr: T[];
 
-        _arr
-        public push(val: T) : void {
-
+        constructor()
+        {
+            this._arr = new Array<T>();
         }
 
-        public pop() : void {
+        public push(val: T) : void {
+            this._arr.push(val);
+        }
 
+        public pop() : T {
+            return this._arr.shift();
         }
     }
 }

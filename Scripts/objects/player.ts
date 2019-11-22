@@ -70,7 +70,7 @@ module objects {
                 // Player is trying to shoot the laser
                 if((managers.Game.keyboardManager.shoot) && (ticker % 10 == 0)) {
                     this.laserSpawn = new math.Vec2(this.x, this.y - this.halfH);
-                    let laser = managers.Game.laserManager.GetLaser(this.laserSpawn);
+                    managers.Game.laserManager.GetLaser(this.laserSpawn);
                 }
             }
         }

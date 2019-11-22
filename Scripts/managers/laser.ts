@@ -1,11 +1,11 @@
 module managers {
     export class Laser {
         // Variables
-        public Lasers:objects.Laser[];  // Hold a set of instantiated lasers
-        public ActiveLasers:objects.Laser[];    // Holds active lasers
-        public CurrentLaser:number; 
-
+        private Lasers:math.Queue<objects.Laser>;
+        private activeLasers: objects.Laser[];
         private laserCount:number;
+
+        private testCounter:number = 0;
         // Constructor
         constructor() {
             this.Start();
@@ -14,40 +14,47 @@ module managers {
         private buildLaserPool():void {
             for(let i = 0; i < this.laserCount; i++)
             {
-                this.Lasers[i] = new objects.Laser();
+                this.Lasers.push(new objects.Laser);
             }
         }
 
         public Start():void {
             this.laserCount = 50;
             // Initialize my laser array
-            this.Lasers = new Array<objects.Laser>();
-            this.ActiveLasers = new Array<objects.Laser>();
+            this.Lasers = new math.Queue<objects.Laser>();
+            this.activeLasers = new Array<objects.Laser>();
             this.buildLaserPool();
-            this.CurrentLaser = 0;
         }
 
         public Update():void {
-            for(let i: number = 0; i < this.ActiveLasers.length; i++)
-            {
-                this.ActiveLasers[i].Update();
 
-                if(!this.ActiveLasers[i].isActive)
-                {
-                    this.Lasers.push(this.ActiveLasers[i]);
+            this.activeLasers.forEach(l => {
+                if(l.isActive) {
+                    l.Update();
+                } else {
+                    let index = this.activeLasers.indexOf(l, 0);
+                    if(index > -1) {
+                        this.Lasers.push(this.activeLasers.splice(index, 1)[0]);
+                    }
+                    // managers.Game.currentSceneObject.removeChild(l);
+                    l.Reset();
                 }
-            }
+            });
         }
 
         public GetLaser(pos: math.Vec2):objects.Laser {
-            let l = this.Lasers[this.CurrentLaser];
-            l.isActive = true;
-            l.x = pos.x;
-            l.y = pos.y
-            this.ActiveLasers.push(l);
-            this.CurrentLaser++;
-            this.CurrentLaser %= 50;
-            return l;
+            let laser:objects.Laser = this.Lasers.pop();
+            laser.x = pos.x;
+            laser.y = pos.y;
+            laser.isActive = true;
+            this.activeLasers.push(laser);
+            managers.Game.currentSceneObject.addChild(laser);
+            this.testCounter++;
+            if(this.testCounter > 50)
+            {
+                console.log("WHYY");
+            }
+            return laser;
         }
     }
 }

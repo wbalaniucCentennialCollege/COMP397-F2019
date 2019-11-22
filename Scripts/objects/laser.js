@@ -35,6 +35,8 @@ var objects;
             this.Move();
         };
         Laser.prototype.Reset = function () {
+            this.x = -5000;
+            this.y = -5000;
         };
         Laser.prototype.Move = function () {
             this.y += this.speedY;

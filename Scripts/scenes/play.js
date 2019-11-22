@@ -29,15 +29,15 @@ var scenes;
             this.background.y = -124;
             // Initialize player
             this.player = new objects.Player();
-            // Initialize laser manager
-            this.laserManager = new managers.Laser();
-            managers.Game.laserManager = this.laserManager;
             // Initialize enemies
             this.enemies = new Array();
             this.enemyNum = 5;
             for (var i = 0; i < this.enemyNum; i++) {
                 this.enemies[i] = new objects.Enemy();
             }
+            // Initialize laser manager
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
             // Initialize my scoreboard
             this.scoreBoard = new managers.Scoreboard;
             this.scoreBoard.x = 10;
@@ -55,17 +55,12 @@ var scenes;
             this.background.Update();
             this.background2.Update();
             this.player.Update();
-            this.laserManager.Update();
             this.enemies.forEach(function (e) {
                 if (!e.isDead) {
                     e.Update();
                     managers.Collision.CheckAABB(_this.player, e);
-                    _this.laserManager.ActiveLasers.forEach(function (laser) {
-                        managers.Collision.CheckAABB(laser, e);
-                    });
                 }
             });
-            // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
             this.laserManager.Update();
         };
         PlayScene.prototype.Main = function () {
@@ -77,9 +72,6 @@ var scenes;
             // this.addChild(this.enemy);s
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
-            });
-            this.laserManager.Lasers.forEach(function (laser) {
-                _this.addChild(laser);
             });
             this.addChild(this.scoreBoard);
         };

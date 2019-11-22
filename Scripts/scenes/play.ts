@@ -28,16 +28,16 @@ module scenes {
             // Initialize player
             this.player = new objects.Player();
 
-            // Initialize laser manager
-            this.laserManager = new managers.Laser();
-            managers.Game.laserManager = this.laserManager;
-
             // Initialize enemies
             this.enemies = new Array<objects.Enemy>();
             this.enemyNum = 5;
             for(let i = 0; i < this.enemyNum; i++) {
                 this.enemies[i] = new objects.Enemy();
             }
+
+            // Initialize laser manager
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
 
             // Initialize my scoreboard
             this.scoreBoard = new managers.Scoreboard;
@@ -58,21 +58,15 @@ module scenes {
             this.background.Update();
             this.background2.Update();
             this.player.Update();
-            this.laserManager.Update();
 
             this.enemies.forEach(e => {
                 if(!e.isDead) {
                     e.Update();
 
                     managers.Collision.CheckAABB(this.player, e);
-
-                    this.laserManager.ActiveLasers.forEach(laser => {
-                        managers.Collision.CheckAABB(laser, e);
-                    });
                 }
             });
 
-            // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
             this.laserManager.Update();
         }
 
@@ -84,10 +78,6 @@ module scenes {
             // this.addChild(this.enemy);s
             this.enemies.forEach(e => {
                 this.addChild(e);
-            });
-
-            this.laserManager.Lasers.forEach(laser => {
-                this.addChild(laser);
             });
             
             this.addChild(this.scoreBoard);

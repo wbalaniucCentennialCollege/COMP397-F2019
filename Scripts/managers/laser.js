@@ -3,39 +3,50 @@ var managers;
     var Laser = /** @class */ (function () {
         // Constructor
         function Laser() {
+            this.testCounter = 0;
             this.Start();
         }
         // Functions / Methods
         Laser.prototype.buildLaserPool = function () {
             for (var i = 0; i < this.laserCount; i++) {
-                this.Lasers[i] = new objects.Laser();
+                this.Lasers.push(new objects.Laser);
             }
         };
         Laser.prototype.Start = function () {
             this.laserCount = 50;
             // Initialize my laser array
-            this.Lasers = new Array();
-            this.ActiveLasers = new Array();
+            this.Lasers = new math.Queue();
+            this.activeLasers = new Array();
             this.buildLaserPool();
-            this.CurrentLaser = 0;
         };
         Laser.prototype.Update = function () {
-            for (var i = 0; i < this.ActiveLasers.length; i++) {
-                this.ActiveLasers[i].Update();
-                if (!this.ActiveLasers[i].isActive) {
-                    this.Lasers.push(this.ActiveLasers[i]);
+            var _this = this;
+            this.activeLasers.forEach(function (l) {
+                if (l.isActive) {
+                    l.Update();
                 }
-            }
+                else {
+                    var index = _this.activeLasers.indexOf(l, 0);
+                    if (index > -1) {
+                        _this.Lasers.push(_this.activeLasers.splice(index, 1)[0]);
+                    }
+                    // managers.Game.currentSceneObject.removeChild(l);
+                    l.Reset();
+                }
+            });
         };
         Laser.prototype.GetLaser = function (pos) {
-            var l = this.Lasers[this.CurrentLaser];
-            l.isActive = true;
-            l.x = pos.x;
-            l.y = pos.y;
-            this.ActiveLasers.push(l);
-            this.CurrentLaser++;
-            this.CurrentLaser %= 50;
-            return l;
+            var laser = this.Lasers.pop();
+            laser.x = pos.x;
+            laser.y = pos.y;
+            laser.isActive = true;
+            this.activeLasers.push(laser);
+            managers.Game.currentSceneObject.addChild(laser);
+            this.testCounter++;
+            if (this.testCounter > 50) {
+                console.log("WHYY");
+            }
+            return laser;
         };
         return Laser;
     }());
