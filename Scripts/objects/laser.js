@@ -15,16 +15,18 @@ var objects;
 (function (objects) {
     var Laser = /** @class */ (function (_super) {
         __extends(Laser, _super);
-        // Variables
         // Constructor
         function Laser() {
             var _this = _super.call(this, "laser1") || this;
+            // Variables
+            _this.isActive = false;
             _this.Start();
             return _this;
         }
         // Methods
         Laser.prototype.Start = function () {
             // We may have to scale the laser to an appropriate size
+            this.isActive = true;
             this.speedX = 0;
             this.speedY = -10;
             this.Reset();
@@ -33,11 +35,12 @@ var objects;
             this.Move();
         };
         Laser.prototype.Reset = function () {
-            this.x = -5000;
-            this.y = -5000;
         };
         Laser.prototype.Move = function () {
             this.y += this.speedY;
+            if (this.y < 0) {
+                this.isActive = false;
+            }
         };
         Laser.prototype.Main = function () { };
         Laser.prototype.CheckBounds = function () { };

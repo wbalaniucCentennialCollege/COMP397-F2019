@@ -15,13 +15,27 @@ var managers;
             this.laserCount = 50;
             // Initialize my laser array
             this.Lasers = new Array();
+            this.ActiveLasers = new Array();
             this.buildLaserPool();
             this.CurrentLaser = 0;
         };
         Laser.prototype.Update = function () {
-            this.Lasers.forEach(function (laser) {
-                laser.Update();
-            });
+            for (var i = 0; i < this.ActiveLasers.length; i++) {
+                this.ActiveLasers[i].Update();
+                if (!this.ActiveLasers[i].isActive) {
+                    this.Lasers.push(this.ActiveLasers[i]);
+                }
+            }
+        };
+        Laser.prototype.GetLaser = function (pos) {
+            var l = this.Lasers[this.CurrentLaser];
+            l.isActive = true;
+            l.x = pos.x;
+            l.y = pos.y;
+            this.ActiveLasers.push(l);
+            this.CurrentLaser++;
+            this.CurrentLaser %= 50;
+            return l;
         };
         return Laser;
     }());

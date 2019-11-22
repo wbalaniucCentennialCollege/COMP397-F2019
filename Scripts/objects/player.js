@@ -72,15 +72,7 @@ var objects;
                 // Player is trying to shoot the laser
                 if ((managers.Game.keyboardManager.shoot) && (ticker % 10 == 0)) {
                     this.laserSpawn = new math.Vec2(this.x, this.y - this.halfH);
-                    var currentLaser = managers.Game.laserManager.CurrentLaser;
-                    var laser = managers.Game.laserManager.Lasers[currentLaser];
-                    laser.x = this.laserSpawn.x;
-                    laser.y = this.laserSpawn.y;
-                    managers.Game.laserManager.CurrentLaser++;
-                    if (managers.Game.laserManager.CurrentLaser > 49) {
-                        managers.Game.laserManager.CurrentLaser = 0;
-                    }
-                    // Play a laser sound
+                    var laser = managers.Game.laserManager.GetLaser(this.laserSpawn);
                 }
             }
         };

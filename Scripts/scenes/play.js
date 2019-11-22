@@ -18,7 +18,6 @@ var scenes;
         // Constructor
         function PlayScene() {
             var _this = _super.call(this) || this;
-            _this.isExploding = false;
             _this.Start();
             return _this;
         }
@@ -61,14 +60,13 @@ var scenes;
                 if (!e.isDead) {
                     e.Update();
                     managers.Collision.CheckAABB(_this.player, e);
+                    _this.laserManager.ActiveLasers.forEach(function (laser) {
+                        managers.Collision.CheckAABB(laser, e);
+                    });
                 }
             });
             // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
-            this.laserManager.Lasers.forEach(function (laser) {
-                _this.enemies.forEach(function (enemy) {
-                    managers.Collision.CheckAABB(laser, enemy);
-                });
-            });
+            this.laserManager.Update();
         };
         PlayScene.prototype.Main = function () {
             var _this = this;
@@ -87,7 +85,7 @@ var scenes;
         };
         PlayScene.prototype.handleExplosion = function () {
             this.stage.removeChild(this.explosion);
-            this.isExploding = false;
+            // this.isExploding = false;
             managers.Game.currentScene = config.Scene.OVER;
         };
         return PlayScene;

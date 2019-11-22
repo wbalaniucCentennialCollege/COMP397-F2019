@@ -8,7 +8,6 @@ module scenes {
         private enemyNum:number;
         private scoreBoard:managers.Scoreboard;
         private explosion:objects.Explosion;
-        private isExploding:boolean = false;
         private laserManager:managers.Laser;
 
         private backgroundMusic: createjs.AbstractSoundInstance;
@@ -66,15 +65,15 @@ module scenes {
                     e.Update();
 
                     managers.Collision.CheckAABB(this.player, e);
+
+                    this.laserManager.ActiveLasers.forEach(laser => {
+                        managers.Collision.CheckAABB(laser, e);
+                    });
                 }
             });
 
             // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
-            this.laserManager.Lasers.forEach(laser => {
-                this.enemies.forEach(enemy => {
-                    managers.Collision.CheckAABB(laser, enemy);
-                });
-            });
+            this.laserManager.Update();
         }
 
         public Main(): void {
@@ -96,7 +95,7 @@ module scenes {
 
         private handleExplosion() {
             this.stage.removeChild(this.explosion);
-            this.isExploding = false;
+            // this.isExploding = false;
             managers.Game.currentScene = config.Scene.OVER;
         }
     }
