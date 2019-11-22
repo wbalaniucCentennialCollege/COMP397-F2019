@@ -62,6 +62,7 @@ var scenes;
                 }
             });
             this.laserManager.Update();
+            this.laserManager.CheckCollisions(this.enemies);
         };
         PlayScene.prototype.Main = function () {
             var _this = this;

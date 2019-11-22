@@ -68,6 +68,7 @@ module scenes {
             });
 
             this.laserManager.Update();
+            this.laserManager.CheckCollisions(this.enemies);
         }
 
         public Main(): void {

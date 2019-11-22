@@ -30,7 +30,6 @@ var managers;
                     if (index > -1) {
                         _this.Lasers.push(_this.activeLasers.splice(index, 1)[0]);
                     }
-                    // managers.Game.currentSceneObject.removeChild(l);
                     l.Reset();
                 }
             });
@@ -47,6 +46,14 @@ var managers;
                 console.log("WHYY");
             }
             return laser;
+        };
+        Laser.prototype.CheckCollisions = function (arr) {
+            var _this = this;
+            arr.forEach(function (a) {
+                _this.activeLasers.forEach(function (laser) {
+                    managers.Collision.CheckAABB(laser, a);
+                });
+            });
         };
         return Laser;
     }());

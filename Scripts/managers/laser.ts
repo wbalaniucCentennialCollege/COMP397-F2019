@@ -36,7 +36,6 @@ module managers {
                     if(index > -1) {
                         this.Lasers.push(this.activeLasers.splice(index, 1)[0]);
                     }
-                    // managers.Game.currentSceneObject.removeChild(l);
                     l.Reset();
                 }
             });
@@ -55,6 +54,15 @@ module managers {
                 console.log("WHYY");
             }
             return laser;
+        }
+
+        public CheckCollisions(arr: objects.GameObject[])
+        {
+            arr.forEach(a => {
+                this.activeLasers.forEach(laser => {
+                    managers.Collision.CheckAABB(laser, a);
+                });
+            });
         }
     }
 }
